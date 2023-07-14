@@ -2,6 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import Navbar from "../components/navbar/Navbar";
 import { useState } from "react";
 import TimeDialog from "../components/dialogs/TimeDialog";
+import TimeTable from "../components/table/TimeTable";
 const Home = () => {
     const [userTimeData, setUserTimeData] = useState([]);
     return (
@@ -13,7 +14,7 @@ const Home = () => {
                     <div></div>
                 </Flex>
 
-                <div></div>
+                <TimeTable userTimeData={userTimeData} />
             </Flex>
         </>
     );
