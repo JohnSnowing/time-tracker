@@ -28,8 +28,8 @@ const TimeDialog = ({ setUserTimeData }) => {
 
     const initialNewTimeState = {
         email: activeUser.email,
-        hours: "",
-        minutes: "",
+        hours: "0",
+        minutes: "0",
         description: "",
         project: "Booking App",
         dateCreated: Date.now(),
@@ -87,7 +87,8 @@ const TimeDialog = ({ setUserTimeData }) => {
     const handleInputChange = (event) => {
         setTimeData((prev) => ({
             ...prev,
-            [event.target.name]: event.target.value,
+            [event.target.name]:
+                event.target.value === "" ? 0 : event.target.value,
         }));
     };
 
@@ -108,7 +109,6 @@ const TimeDialog = ({ setUserTimeData }) => {
                                     Hour/s
                                 </FormLabel>
                                 <Input
-                                    required
                                     type="number"
                                     id="hour"
                                     name="hours"
@@ -133,7 +133,6 @@ const TimeDialog = ({ setUserTimeData }) => {
                                     Minute/s
                                 </FormLabel>
                                 <Input
-                                    required
                                     type="number"
                                     id="minutes"
                                     name="minutes"
