@@ -41,6 +41,9 @@ If you wish to contribute to this project, please follow the steps below:
 3. Commit your changes and push the branch to your fork.
 4. Submit a pull request with a detailed description of your changes.
 
+## Deployed link
+https://time-tracker-test.netlify.app/
+
 ## Acknowledgements
 
 - Countable Web Productions
