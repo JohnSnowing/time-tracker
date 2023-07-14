@@ -100,7 +100,7 @@ const TimeDialog = ({ setUserTimeData }) => {
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Log a Time</ModalHeader>
-                    <ModalCloseButton />
+                    <ModalCloseButton backgroundColor="brand.100" />
                     <ModalBody>
                         <form ref={formRef} onSubmit={handleSubmit}>
                             <FormControl mb="1rem">
@@ -212,7 +212,13 @@ const TimeDialog = ({ setUserTimeData }) => {
                                     }}
                                 />
                             </FormControl>
-                            <Button mt={1} colorScheme="teal" type="submit">
+                            <Button
+                                mt={1}
+                                backgroundColor="brand.100"
+                                type="submit"
+                                color="white"
+                                _hover={{ color: "textColor.h1" }}
+                            >
                                 Submit
                             </Button>
                         </form>

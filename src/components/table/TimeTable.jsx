@@ -45,7 +45,7 @@ const TimeTable = ({ userTimeData }) => {
                         <Tr>
                             <Th>Project</Th>
                             <Th>Description</Th>
-                            <Th>Time</Th>
+                            <Th>Total Time (H:M)</Th>
                             <Th>Date Submitted</Th>
                         </Tr>
                     </Thead>
