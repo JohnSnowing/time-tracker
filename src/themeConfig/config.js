@@ -3,6 +3,8 @@ import "@fontsource/open-sans";
 import "@fontsource/open-sans/400.css"; 
 import "@fontsource/open-sans/400-italic.css";
 
+
+//theme overall configuration
 export const theme = extendTheme({
     colors: {
         brand: {
