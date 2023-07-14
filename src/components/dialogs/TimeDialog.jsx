@@ -40,13 +40,13 @@ const TimeDialog = ({ setUserTimeData }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log("timedat", timeData);
-
+        //Get data from local storage
         const localUserTimeData =
             JSON.parse(localStorage.getItem("userTimeData")) || [];
 
         const { hours, minutes } = timeData;
 
+        //validations
         if (hours > 24 || hours < 0) {
             toast.error("Hours should not be greater than 24 or less than 0", {
                 position: "top-right",
