@@ -10,7 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { HiEye, HiEyeOff } from "react-icons/hi";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Register = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -21,8 +22,10 @@ const Register = () => {
         email: "",
         password: "",
     });
+    const navigate = useNavigate();
     const { setParentLayoutText } = useOutletContext();
 
+    //reveal password when eye was clicked
     const onClickReveal = () => {
         setIsOpen((prev) => !prev);
     };
@@ -34,9 +37,48 @@ const Register = () => {
         }));
     };
 
+    //handle Resetting of form
+    const reset = () => {
+        setInputs({ name: "", email: "", password: "" });
+        formRef.current.reset();
+        navigate("/auth");
+    };
+
+    //function on Submit registration
     const handleRegister = (event) => {
         event.preventDefault();
         setIsLoading(true);
+
+        const userData = localStorage.getItem("user");
+
+        if (userData) {
+            const userList = JSON.parse(userData);
+            const emailExists = userList.some(
+                (user) => user.email === inputs.email,
+            );
+            if (emailExists) {
+                toast.error("Email already exists", {
+                    position: "top-right",
+                    autoClose: 5000,
+                });
+            } else {
+                toast.success("Registered successfully Login your account", {
+                    position: "top-right",
+                    autoClose: 5000,
+                });
+                userList.push(inputs);
+                localStorage.setItem("user", JSON.stringify(userList));
+                reset();
+            }
+        } else {
+            toast.success("Registered successfully Login your account", {
+                position: "top-right",
+                autoClose: 5000,
+            });
+            localStorage.setItem("user", JSON.stringify([inputs]));
+            reset();
+        }
+        setIsLoading(false);
     };
 
     useEffect(() => {
