@@ -7,6 +7,7 @@ import ProtectedRoute from "./auth/ProtectedRoute";
 import Home from "./pages/Home";
 import { useContext } from "react";
 import { UserContext } from "./context/userContext";
+import Error from "./pages/Error";
 
 function App() {
     const [activeUser] = useContext(UserContext);
@@ -26,6 +27,7 @@ function App() {
                             </ProtectedRoute>
                         }
                     />
+                    <Route path="*" element={<Error />} />
                 </Routes>
             </BrowserRouter>
         </>
