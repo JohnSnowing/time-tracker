@@ -8,20 +8,26 @@ import {
     InputRightElement,
     Stack,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { HiEye, HiEyeOff } from "react-icons/hi";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { UserContext } from "../context/userContext";
 
 const Login = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [inputs, setInputs] = useState({ email: "", password: "" });
+    const [activeUser, setActiveUser] = useContext(UserContext);
     const { setParentLayoutText } = useOutletContext();
+
+    const navigate = useNavigate();
 
     const onClickReveal = () => {
         setIsOpen((prev) => !prev);
     };
 
     useEffect(() => {
+        //set parent header text
         setParentLayoutText({
             headerText: "Log in to your account",
             secondaryHeaderText: "Don't have an account?",
@@ -39,6 +45,25 @@ const Login = () => {
 
     const handleLogin = (event) => {
         event.preventDefault();
+
+        const { email, password } = inputs;
+
+        const userData = JSON.parse(localStorage.getItem("user"));
+
+        //find user by email
+        const user = userData.find((user) => user.email === email);
+
+        if (user && user.password === password) {
+            toast.success("Login successful");
+            setActiveUser(user);
+            navigate("/");
+        } else {
+            toast.error("Invalid email or password", {
+                position: "top-right",
+                autoClose: 3000,
+                theme: "light",
+            });
+        }
     };
 
     return (
