@@ -46,18 +46,26 @@ const Login = () => {
     const handleLogin = (event) => {
         event.preventDefault();
 
-        const { email, password } = inputs;
+        try {
+            const { email, password } = inputs;
 
-        const userData = JSON.parse(localStorage.getItem("user"));
+            const userData = JSON.parse(localStorage.getItem("user"));
 
-        //find user by email
-        const user = userData.find((user) => user.email === email);
+            //find user by email
+            const user = userData?.find((user) => user.email === email);
 
-        if (user && user.password === password) {
-            toast.success("Login successful");
-            setActiveUser(user);
-            navigate("/");
-        } else {
+            if (user && user.password === password) {
+                toast.success("Login successful");
+                setActiveUser(user);
+                navigate("/");
+            } else {
+                toast.error("Invalid email or password", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    theme: "light",
+                });
+            }
+        } catch {
             toast.error("Invalid email or password", {
                 position: "top-right",
                 autoClose: 3000,
