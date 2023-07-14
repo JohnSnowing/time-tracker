@@ -50,7 +50,7 @@ https://time-tracker-test.netlify.app/
 
 ## Contact
 
-For any questions or inquiries, please contact Jonmari Danda at jonmari.dandal.solid@gmail.com
+For any questions or inquiries, please contact Jonmari Dandal at jonmari.dandal.solid@gmail.com
 
 
 
